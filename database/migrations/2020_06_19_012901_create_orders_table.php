@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('state',['Pending','Shipped','Delivered','Processing']);
             $table->date('delivery_time')->nullable();
-            $table->integer('total_price');
+            $table->decimal('total_price');
             $table->integer('discount');
             $table->string('payment_id');
             $table->string('address');

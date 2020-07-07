@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->enum('active',[0,1])->default(0);
             $table->string('slug');
-            $table->integer('price');
+            $table->decimal('price');
             $table->softDeletes();
             $table->timestamps();
         });

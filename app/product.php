@@ -37,10 +37,6 @@ class product extends Model
     {
         return $this->hasMany('App\attribute');
     }
-    public function getTagsAttribute()
-    {
-        return $this->hasMany('App\tag');
-    }
     public function getReviewsAttribute()
     {
         return $this->hasMany('App\review');

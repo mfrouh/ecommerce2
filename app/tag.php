@@ -10,10 +10,12 @@ class tag extends Model
     use SoftDeletes;
     protected $appends=[];
 
-    protected $fillable=[];
+    protected $fillable=['name'];
 
     public function products()
     {
         return $this->morphedByMany('App\product', 'taggable');
     }
+
+
 }

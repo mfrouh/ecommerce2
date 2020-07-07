@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\product;
+use App\tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -58,11 +59,21 @@ class ProductController extends Controller
         $product->price=$request->price;
         $product->slug=$request->name.rand(1111,9999);
         $product->save();
-        if ($request->images) {
-            $arr=array();
+           if ($request->images) {
             foreach ($request->images as $key =>$value ) {
                 $product->gallery()->create(['url'=>sorteimage('storage/product',$value)]);
             }
+           }
+           if ($request->tags) {
+            foreach (explode(',',$request->tags) as $key =>$value ) {
+                $tag=tag::where('name',$value)->first();
+                if(!$tag)
+                {
+                    $tag=tag::create(['name'=>$value]);
+                }
+                $arr[]=$tag->id;
+            }
+            $product->tags()->sync($arr);
            }
         return redirect('/admin/product');
     }
@@ -118,6 +129,17 @@ class ProductController extends Controller
             foreach ($request->images as $key =>$value ) {
                 $product->gallery()->create(['url'=>sorteimage('storage/product',$value)]);
             }
+           }
+        if ($request->tags) {
+            foreach (explode(',',$request->tags) as $key =>$value ) {
+                $tag=tag::where('name',$value)->first();
+                if(!$tag)
+                {
+                    $tag=tag::create(['name'=>$value]);
+                }
+                $arr[]=$tag->id;
+            }
+            $product->tags()->sync($arr);
            }
         return redirect('/admin/product');
     }
