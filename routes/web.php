@@ -59,6 +59,8 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','role:admin']], function
    Route::get('/clients','Admin\PagesController@clients');
    Route::get('/orders','Admin\PagesController@orders');
    Route::get('/order_details/{id}','Admin\PagesController@order_details');
+   Route::get('/value','Admin\PagesController@value');
+   Route::get('/tag','Admin\PagesController@tag');
 
 });
 Route::group(['middlewire'=>['']], function () {

@@ -134,6 +134,16 @@
             </a>
           </li>
           <li  class="nav-item text-right">
+            <a href="/admin/value" class="nav-link">
+                <i class="nav-icon fas fa-th"></i><p >قيم الخصائص</p>
+            </a>
+          </li>
+          <li  class="nav-item text-right">
+            <a href="/admin/tag" class="nav-link">
+                <i class="nav-icon fas fa-tags"></i><p >كلمات لها علاقة</p>
+            </a>
+          </li>
+          <li  class="nav-item text-right">
             <a href="/admin/offer" class="nav-link">
                 <i class="nav-icon fas fa-th"></i><p >العروض </p>
             </a>
