@@ -21,4 +21,8 @@ class valueable extends Model
     {
         return $this->belongsTo('App\attribute');
     }
+    public function variants()
+    {
+        return $this->belongsToMany('App\variant');
+    }
 }

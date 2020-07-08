@@ -6,5 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class variant extends Model
 {
-    //
+    protected $appends=[];
+
+    protected $fillable=['name'];
+
+    public function product()
+    {
+        return $this->belongsTo('App\product');
+    }
+
+    public function gallery()
+    {
+        return $this->morphMany('App\image', 'imageable');
+    }
+    
+    public function valueables()
+    {
+        return $this->belongsToMany('App\valueable', 'variant_valueable_table', 'valueable_id', 'variant_id'); // works
+    }
 }
