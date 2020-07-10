@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container-fuild">
-    <a href="/admin/variant/deletevariants" class="btn btn-danger shadow-sm m-2 btn-sm">الخصائص المحذوفة</a>
     <div class="card card-primary text-center">
-        <div class="card-header">الخصائص</div>
+        <div class="card-header">الانواع</div>
         <div class="card-body">
             <table class="table">
                 <thead>

@@ -39,20 +39,10 @@
             </div>
          </div>
          <div class="row">
-            <div class="form-group col-6">
+            <div class="form-group col-12">
               <label for="">السعر</label>
               <input type="number" min="1"  class="form-control"  name="price">
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label>الخصائص</label>
-                  <select class="select2bs4" multiple="attributes[]"  data-placeholder="اختار الخصائص" style="width: 100%;">
-                    @foreach ($attributes as $attribute)
-                       <option value="{{$attribute->id}}">{{$attribute->name}}</option>
-                    @endforeach
-                  </select>
-                </div>
-          </div>
          </div>
          <div class="form-group">
             <label>كلمات لها علاقة</label>

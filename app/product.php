@@ -9,7 +9,7 @@ class product extends Model
 {
     use SoftDeletes;
 
-    protected $fillable=['category_id','name','price','description','slug','active','offer'];
+    protected $fillable=['category_id','name','price','description','slug','active'];
 
     protected $appends=['tags','rates','reviews','categorys','myimages','oneimage'];
 
@@ -52,6 +52,10 @@ class product extends Model
     public function tags()
     {
         return $this->morphToMany('App\tag', 'taggable');
+    }
+    public function offer()
+    {
+        return $this->hasOne('App\offer');
     }
 
 }

@@ -58,6 +58,11 @@ class variantController extends Controller
         $variant->product_id=$request->product_id;
         $variant->sku=$sku;
         $variant->save();
+        if ($request->images) {
+            foreach ($request->images as $key =>$value ) {
+                $variant->gallery()->create(['url'=>sorteimage('storage/product',$value)]);
+            }
+           }
         foreach ($request->all()  as $key => $value) {
             if(is_int($key)==true){
                DB::insert('insert into variant_valueable (variant_id,valueable_id) values (?, ?)', [$variant->id,$value]);
@@ -109,17 +114,15 @@ class variantController extends Controller
             'qty'=>'required',
             'product_id'=>'required',
         ]);
-        $sku="";
-        foreach ($request->all() as $key => $value) {
-            if(is_int($key)==true){
-            $sku .= $request->product_id.$key.$value;
-            }
-        }
         $variant->price=$request->price;
         $variant->qty=$request->qty;
         $variant->product_id=$request->product_id;
-        $variant->sku=$sku;
         $variant->save();
+        if ($request->images) {
+            foreach ($request->images as $key =>$value ) {
+                $variant->gallery()->create(['url'=>sorteimage('storage/product',$value)]);
+            }
+           }
         
     }
 

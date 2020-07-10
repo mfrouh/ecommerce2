@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fuild">
    <div class="card card-primary text-right">
-     <div class="card-header ">تعديل خاصة</div>
+     <div class="card-header ">تعديل نوع</div>
      <div class="card-body">
        <form action="/admin/variant/{{$variant->id}}" method="post" enctype="multipart/form-data">
         @csrf
@@ -13,17 +13,9 @@
            <span class="badge-danger p-1 shadow-sm">{{$variant->product->name}}</span>
         </div>
         <input type="hidden" name="product_id" value="{{$variant->product->id}}">
-          @foreach ($variant->product->attributes->unique() as $key=> $attribute)
-            <label for="">{{$attribute->name}}</label>
-            <select name="{{$attribute->id}}" class="form-control" required>
-              @foreach ($attribute->values as $value)
-                @foreach ($variant->product->valueable as $valueable)
-                  @if($valueable->value_id==$value->id)
-                  <option value="{{$valueable->id}}"{{$variant->valueables}}>{{$value->name}}</option> 
-                  @endif
-                @endforeach
-              @endforeach
-            </select>
+          @foreach ($variant->valueables as $key=> $valueable)
+             {{$valueable->attribute->name}}
+             {{$valueable->value->name}}
           @endforeach
          <div class="form-group ">
            <label for="">السعر</label>

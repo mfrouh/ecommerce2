@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fuild">
     <div class="card card-primary text-center">
-        <div class="card-header">الطلبات</div>
+        <div class="card-header">كلمات لها علاقة</div>
         <div class="card-body">
             <table class="table">
                 <thead>

@@ -15,8 +15,6 @@
                         <th>السعر</th>
                         <th>الحالة</th>
                         <th>القسم</th>
-                        <th>العرض</th>
-                        <th>اضافة خصائص</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -32,12 +30,6 @@
                         <td>{{active($product->active)}}</td>
                         <td>{{$product->category->name}}</td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="/admin/offer/create/{{$product->id}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                        </td>
-                        <td>
-                            <a class="btn btn-dark btn-sm" href="/admin/valueable/create/{{$product->id}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                        </td>
-                        <td>
                             <a href="/admin/product/{{$product->id}}" class="btn btn-success btn-sm"><i class="far fa-eye"></i></a>
                             <a href="/admin/product/{{$product->id}}/edit" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
                             <a class="btn btn-outline-danger brdrd btn-sm" onclick="event.preventDefault();
@@ -45,7 +37,7 @@
                               <form id="delete-product-{{$product->id}}" action="/admin/product/{{$product->id}}" method="post" style="display: none;">
                                 @csrf
                                 @method("DELETE")
-                               </form>
+                              </form>
                         </td>
                     </tr>
                     @empty

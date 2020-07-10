@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container-fuild">
-    <a href="/admin/variant/create" class="btn btn-success shadow-sm m-2 btn-sm">انشاء خاصة</a>
+    <a href="/admin/variant/create" class="btn btn-success shadow-sm m-2 btn-sm">انشاء نوع</a>
 
     <div class="card card-primary text-center">
-        <div class="card-header">الخصائص</div>
+        <div class="card-header">الانواع</div>
         <div class="card-body">
             <table class="table">
                 <thead>
