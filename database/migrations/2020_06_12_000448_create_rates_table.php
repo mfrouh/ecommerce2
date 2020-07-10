@@ -21,7 +21,6 @@ class CreateRatesTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('rate');
             $table->unique(['user_id','product_id']);
-            $table->softDeletes();
             $table->timestamps();
         });
     }

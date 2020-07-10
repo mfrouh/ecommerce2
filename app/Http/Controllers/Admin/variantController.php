@@ -3,9 +3,150 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\product;
+use App\variant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class variantController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware(['auth','role:admin']);
+    }
+    public function index()
+    {
+        $variants=variant::all();
+        return view('admin.variant.index',compact('variants'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(product $product)
+    {
+        return view('admin.variant.create',compact('product'));
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'price'=>'required',
+            'qty'=>'required',
+            'product_id'=>'required',
+        ]);
+        $sku="";
+        foreach ($request->all() as $key => $value) {
+            if(is_int($key)==true){
+                $sku .= $request->product_id.$key.$value;
+            }
+        }
+        $variant=variant::where('sku',$sku)->first();
+        if(!$variant){
+        $variant=new variant();
+        $variant->price=$request->price;
+        $variant->qty=$request->qty;
+        $variant->product_id=$request->product_id;
+        $variant->sku=$sku;
+        $variant->save();
+        foreach ($request->all()  as $key => $value) {
+            if(is_int($key)==true){
+               DB::insert('insert into variant_valueable (variant_id,valueable_id) values (?, ?)', [$variant->id,$value]);
+            }
+        }
+            return redirect('/admin/variant')->with('success','تمت الاضافة');
+        }
+        else
+        {
+            return back()->with('success','هذه القيمة موجودة');
+        }
+        
+       
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(variant $variant)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(variant $variant)
+    {
+        return view('admin.variant.edit',compact('variant'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request,variant $variant)
+    {
+        $this->validate($request,[
+            'price'=>'required',
+            'qty'=>'required',
+            'product_id'=>'required',
+        ]);
+        $sku="";
+        foreach ($request->all() as $key => $value) {
+            if(is_int($key)==true){
+            $sku .= $request->product_id.$key.$value;
+            }
+        }
+        $variant->price=$request->price;
+        $variant->qty=$request->qty;
+        $variant->product_id=$request->product_id;
+        $variant->sku=$sku;
+        $variant->save();
+        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(variant $variant)
+    {
+        $variant->delete();
+        return back();
+    }
+    public function forcedelete($id)
+    {
+        variant::onlyTrashed()->where('id', $id)->forceDelete();
+        return back();
+    }
+    public function restore($id)
+    {
+        variant::onlyTrashed()->where('id', $id)->restore();
+        return back();
+    }
+    public function deletevariants()
+    {
+        $variants=variant::onlyTrashed()->orderby('id','desc')->get();
+        return view('admin.variant.deletevariant',compact('variants'));
+    }
 }

@@ -22,6 +22,6 @@ class variant extends Model
     
     public function valueables()
     {
-        return $this->belongsToMany('App\valueable', 'variant_valueable_table', 'valueable_id', 'variant_id'); // works
+        return $this->belongsToMany('App\valueable', 'variant_valueable','variant_id','valueable_id');
     }
 }

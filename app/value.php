@@ -12,4 +12,8 @@ class value extends Model
     {
         return $this->hasMany('App\valueable');
     }
+    public function attributes()
+    {
+        return $this->belongsToMany('App\attribute');
+    }
 }

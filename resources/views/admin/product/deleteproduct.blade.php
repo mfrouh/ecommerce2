@@ -16,7 +16,6 @@
                         <th>القسم</th>
                         <th>العرض</th>
                         <th>اضافة خصائص</th>
-                        <th>التفاصيل</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -36,9 +35,6 @@
                         </td>
                         <td>
                             <a class="btn btn-dark btn-sm" href="/admin/valueable/create/{{$product->id}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                        </td>
-                        <td>
-                            <a class="btn btn-success btn-sm"><i class="far fa-eye"></i></a>
                         </td>
                         <td>
                             <a href="/admin/product/forcedelete/{{$product->id}}" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>

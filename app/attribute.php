@@ -16,6 +16,14 @@ class attribute extends Model
     {
         return $this->hasMany('App\valueable');
     }
+    public function products()
+    {
+        return $this->belongsToMany('App\product');
+    }
+    public function values()
+    {
+        return $this->belongsToMany('App\value', 'valueables','attribute_id','value_id' ); // works
+    }
 
 
 }

@@ -11,7 +11,7 @@ class product extends Model
 
     protected $fillable=['category_id','name','price','description','slug','active','offer'];
 
-    protected $appends=['attributes','tags','rates','reviews','categorys','myimages','oneimage'];
+    protected $appends=['tags','rates','reviews','categorys','myimages','oneimage'];
 
     public function getCategorysAttribute()
     {
@@ -29,13 +29,17 @@ class product extends Model
     {
         return $this->hasMany('App\valueable');
     }
+    public function variants()
+    {
+        return $this->hasMany('App\variant');
+    }
+    public function attributes()
+    {
+        return $this->belongsToMany('App\attribute', 'valueables','product_id','attribute_id' ); // works
+    }
     public function category()
     {
         return $this->belongsTo('App\category')->withTrashed();
-    }
-    public function getAttributesAttribute()
-    {
-        return $this->hasMany('App\attribute');
     }
     public function getReviewsAttribute()
     {

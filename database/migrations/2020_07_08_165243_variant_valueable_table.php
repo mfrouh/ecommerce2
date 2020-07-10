@@ -13,7 +13,7 @@ class VariantValueableTable extends Migration
      */
     public function up()
     {
-        Schema::create('variant_valueable_table', function (Blueprint $table) {
+        Schema::create('variant_valueable', function (Blueprint $table) {
             $table->id();
             $table->foreignId('variant_id');
             $table->foreign('variant_id')->references('id')->on('variants')->onDelete('cascade')->onUpdate('cascade');
@@ -31,6 +31,6 @@ class VariantValueableTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('variant_valueable_table');
+        Schema::dropIfExists('variant_valueable');
     }
 }

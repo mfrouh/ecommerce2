@@ -17,7 +17,6 @@
                         <th>القسم</th>
                         <th>العرض</th>
                         <th>اضافة خصائص</th>
-                        <th>التفاصيل</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -39,9 +38,7 @@
                             <a class="btn btn-dark btn-sm" href="/admin/valueable/create/{{$product->id}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
                         </td>
                         <td>
-                            <a class="btn btn-success btn-sm"><i class="far fa-eye"></i></a>
-                        </td>
-                        <td>
+                            <a href="/admin/product/{{$product->id}}" class="btn btn-success btn-sm"><i class="far fa-eye"></i></a>
                             <a href="/admin/product/{{$product->id}}/edit" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
                             <a class="btn btn-outline-danger brdrd btn-sm" onclick="event.preventDefault();
                               document.getElementById('delete-product-{{$product->id}}').submit();" href="#"><i class="fas fa-trash"></i></a>
