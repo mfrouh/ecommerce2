@@ -39,9 +39,6 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','role:admin']], function
    Route::get('/valueable/deletevalueables','Admin\valueableController@deletevalueables');
    Route::get('/valueable/create/{product}','Admin\valueableController@create');
 
-   Route::get('/variant/forcedelete/{id}','Admin\variantController@forcedelete');
-   Route::get('/variant/restore/{id}','Admin\variantController@restore');
-   Route::get('/variant/deletevariants','Admin\variantController@deletevariants');
    Route::get('/variant/create/{product}','Admin\variantController@create');
 
    Route::get('/offer/forcedelete/{id}','Admin\OfferController@forcedelete');
@@ -55,15 +52,11 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','role:admin']], function
    Route::resource('valueable','Admin\valueableController');
    Route::resource('variant','Admin\variantController');
    Route::resource('offer','Admin\OfferController');
-   Route::get('/offer/create',function(){
-       return abort('404');
-   });
-   Route::get('/valueable/create',function(){
-    return abort('404');
-  });
-  Route::get('/variant/create',function(){
-    return abort('404');
-  });
+
+   Route::get('/offer/create',function(){return abort('404');});
+   Route::get('/valueable/create',function(){return abort('404'); });
+   Route::get('/variant/create',function(){return abort('404');});
+   
    Route::get('/dashboard','Admin\PagesController@dashboard');
    Route::get('/clients','Admin\PagesController@clients');
    Route::get('/orders','Admin\PagesController@orders');

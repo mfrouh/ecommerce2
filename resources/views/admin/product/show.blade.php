@@ -76,7 +76,7 @@
                     @empty
                     <tr>
                       <td colspan="5">
-                        <h3> لا يوجد خصائص</h3>
+                        <h6> لا يوجد انواع</h6>
                       </td>
                     </tr>
                     @endforelse

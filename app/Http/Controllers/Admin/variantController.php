@@ -86,7 +86,7 @@ class variantController extends Controller
      */
     public function show(variant $variant)
     {
-        //
+        return view('admin.variant.show',compact('variant'));
     }
 
     /**
@@ -137,19 +137,5 @@ class variantController extends Controller
         $variant->delete();
         return back();
     }
-    public function forcedelete($id)
-    {
-        variant::onlyTrashed()->where('id', $id)->forceDelete();
-        return back();
-    }
-    public function restore($id)
-    {
-        variant::onlyTrashed()->where('id', $id)->restore();
-        return back();
-    }
-    public function deletevariants()
-    {
-        $variants=variant::onlyTrashed()->orderby('id','desc')->get();
-        return view('admin.variant.deletevariant',compact('variants'));
-    }
+    
 }
