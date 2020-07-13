@@ -7,7 +7,7 @@
        <form action="/admin/variant" method="post">
         @csrf
         <div class="form-group text-center col-12  ">
-          <img src="{{asset('storage/product')}}/{{$product->image->url}}" height="100px" width="100px" class="img-circle shadow-sm mb-1" alt="">
+          <img src="{{asset('/storage/product')}}/{{$product->image->url}}" height="100px" width="100px" class="img-circle shadow-sm mb-1" alt="">
           <br>
            <span class="badge-danger p-1 shadow-sm">{{$product->name}}</span>
         </div>

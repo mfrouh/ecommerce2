@@ -8,7 +8,7 @@
        <form action="/admin/offer" method="post">
         @csrf
         <div class="form-group text-center col-12  ">
-           <img src="{{asset($product->oneimage)}}" height="100px" width="100px" class="img-circle shadow-sm mb-1" alt="">
+           <img src="{{asset($product->image)}}" height="100px" width="100px" class="img-circle shadow-sm mb-1" alt="">
            <br>
             <span class="badge-danger p-1 shadow-sm">{{$product->name}}</span>
         </div>

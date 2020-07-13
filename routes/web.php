@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('layouts.front');
 });
 
 Auth::routes();
@@ -65,6 +65,15 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','role:admin']], function
    Route::get('/tag','Admin\PagesController@tag');
 
 });
-Route::group(['middlewire'=>['']], function () {
 
+Route::group(['middleware'=>['auth','role:client']], function () {
+    Route::get('/orders','Front\PagesController@orders');
+    Route::get('/order_details/{id}','Front\PagesController@order_details');
+    Route::get('/wishlist','Front\PagesController@wishlist');
+    Route::get('/checkout','Front\PagesController@checkout');
+    Route::get('/profile','Front\PagesController@profile');
  });
+Route::get('/cart','Front\PagesController@cart');
+Route::get('/category/{id}','Front\PagesController@category');
+Route::get('/product/{id}','Front\PagesController@product');
+Route::get('/compare','Front\PagesController@compare');
